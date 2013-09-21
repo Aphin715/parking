@@ -18,3 +18,12 @@ describe ParkingRegistration do
 
 
 end
+
+describe 'parking' do
+  it 'parks the car for today' do
+    registration = FactoryGirl.build(:parking_registration, parked_on: nil)
+      expect(registration.park).to eql(true)
+      expect(registration.parked_on).to eql(Date.today)
+    end
+
+  end

@@ -15,13 +15,26 @@ feature "user registers a parking spot", %Q{
   scenario "With Valid Attributes User find a spot" do
     prev_count = ParkingRegistration.count
     visit "/"
-    fill_in "First Name", with: "Alex"
-    fill_in "Last Name", with: "Phin"
+    fill_in 'First name', with: "Alex"
+    fill_in "Last name", with: "Phin"
     fill_in "Email", with: "Alex@phin.com"
     fill_in "Spot number", with: 5
     click_button "Register"
-    expect(page).to have_content("You Registed Successully")
+    expect(page).to have_content("You registered successfully")
     expect(ParkingRegistration.count).to eql(prev_count +1 )
 
   end
-end
+
+# scenario 'specifies valid information, registers spot' do
+#     prev_count = ParkingRegistration.count
+#     visit '/'
+#     fill_in 'First name', with: 'John'
+#     fill_in 'Last name', with: 'Smith'
+#     fill_in 'Email', with: 'user@example.com'
+#     fill_in 'Spot number', with: 5
+#     click_button 'Register'
+#     expect(page).to have_content('You registered successfully')
+#     expect(ParkingRegistration.count).to eql(prev_count + 1)
+#   end
+
+ end
