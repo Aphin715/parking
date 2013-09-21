@@ -14,7 +14,7 @@ feature "user registers a parking spot", %Q{
 
   scenario "With Valid Attributes User find a spot" do
     prev_count = ParkingRegistration.count
-    visit '/'
+    visit "/"
     fill_in "First Name", with: "Alex"
     fill_in "Last Name", with: "Phin"
     fill_in "Email", with: "Alex@phin.com"
