@@ -8,6 +8,9 @@ class ParkingRegistration < ActiveRecord::Base
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 60
 
+    validates_uniqueness_of :spot_number,
+    scope:  :parked_on
+
     def park
       self.parked_on = Date.today
       save

@@ -17,13 +17,21 @@ describe ParkingRegistration do
   it {should_not have_valid(:parked_on).when(nil," ")}
 
 
-end
 
 describe 'parking' do
   it 'parks the car for today' do
     registration = FactoryGirl.build(:parking_registration, parked_on: nil)
       expect(registration.park).to eql(true)
       expect(registration.parked_on).to eql(Date.today)
-    end
-
+         end
+        it "only allows one registration per day" do
+          prev_registraion = FactoryGirl.create(:parking_registration)
+          registration = FactoryGirl.build(:parking_registration,
+            spot_number:prev_registraion.spot_number,
+            parked_on: prev_registraion.parked_on)
+          expect(registration.park).to be_false
+          expect(registration).to_not be_valid
+          expect(registration.errors[:spot_number]).to_not be_blank
+        end
   end
+end
